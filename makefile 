@@ -1,0 +1,20 @@
+CC=gcc
+CFLAGS=-W -g
+LDFLAGS= -lpthread
+EXEC=process status
+
+all: $(EXEC)
+
+process: process.o
+	$(CC) -o $@ $^ $(LDFLAGS)
+status: status.o
+	$(CC) -o $@ $^ $(LDFLAGS)
+
+%.o: %.c
+	$(CC) -o $@ -c $^ $(CFLAGS)
+
+clean:
+	rm -rf *.o
+mrproper: clean
+	rm -rf $(EXEC)
+
